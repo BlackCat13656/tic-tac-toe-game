@@ -1,32 +1,35 @@
 const gameBoard = (() => {
-  const grid = ["", "", "", "", "", "", "", "", ""];
+  return {
+    grid: ["", "", "", "", "", "", "", "", ""],
+  };
 })();
 
-function player(name, selection) {
-  return { name: name, selection: selection };
+const player = (name, marker) => {
+  return { name, marker };
+};
+
+function getPlayers() {
+  const markers = ["X", "O"];
+  const playerUser = player("Ekan", markers[0]);
+  const playerComputer = player("Computer", markers[1]);
+  return { playerUser, playerComputer };
 }
 
-function playGame() {
-  // const human = getPlayerSelection();
-  const computer = geteBotSelection();
+const gamePlay = function () {
+  // access grid
+  console.log(gameBoard);
 
-  // functions
-  function getPlayerSelection() {
-    let name = prompt("What's your name?");
-    let selection = prompt("Your turn, X or O?");
-    while (selection !== "X" && selection !== "O") {
-      selection = prompt("Wrong answer. Type X or O.");
-    }
-    return player(name, selection);
-  }
+  // get player names and marker selections
+  console.log(getPlayers());
+};
 
-  function geteBotSelection() {
-    const options = ["X", "O"];
-    const selection = options[Math.floor(Math.random() * options.length)];
-    return player("Computer", selection);
-  }
+gamePlay();
 
-  return { human, computer };
-}
+//  O  O  O
+//  0  0  0
+//  0  0  0
 
-console.log(playGame());
+// All posible winning positions
+// (0, 3, 6 - 1, 4, 7 - 2, 5, 8);
+// (0, 1, 2 - 3, 4, 5 - 6, 7, 8);
+// (0, 4, 8 - 2, 4, 6);
