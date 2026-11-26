@@ -7,7 +7,7 @@ function player(name, selection) {
 }
 
 function playGame() {
-  const human = getPlayerSelection();
+  // const human = getPlayerSelection();
   const computer = geteBotSelection();
 
   // functions
