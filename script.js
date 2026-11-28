@@ -1,43 +1,44 @@
+const container = document.querySelector(".container");
 const gameBoard = (() => {
   return {
     grid: ["", "", "", "", "", "", "", "", ""],
   };
 })();
 
-const player = (name, marker) => {
-  return { name, marker };
-};
-
 const getPlayers = () => {
+  const player = (name, marker) => {
+    return { name, marker };
+  };
+
   const markers = ["X", "O"];
-  const playerUser = player("Ekan", markers[0]);
-  const playerComputer = player("Computer", markers[1]);
-  return { playerUser, playerComputer };
+  const player1 = player("Player 1", "X");
+  const player2 = player("Player 2", "O");
+  return { player1, player2 };
 };
 
-function playRound(board, players) {
-  console.log(board, players);
+function playRound(players, board) {
+  const { player1, player2 } = players();
+  const gridArray = board.grid;
 
-  const playerIndex = 0;
-  let computerIndex = Math.floor(Math.random() * board.length);
+  gridArray.forEach((item, index) => {
+    const div = document.createElement("div");
+    div.innerHTML = `<button class="button" data-id="${index}">Space #${index}</button>`;
+    container.appendChild(div);
+  });
 
-  while (computerIndex === playerIndex) {
-    computerIndex = Math.floor(Math.random() * board.length);
-  }
+  let turn = 1;
+  let p1Index;
+  let p2Index;
+
+  // player 1 selects space
+  // first thing to do is check if space is available so this is a check
+  // if space is available to play, index number of gridArray is asigned to p1Index
+  // else do nothing on UI till player 1 selects a valid space
+
+  console.log(gridArray);
 }
 
-const gamePlay = function () {
-  // get board
-  const board = gameBoard.grid;
-
-  // get player names and marker selections
-  const players = getPlayers();
-
-  // play a round
-  playRound(board, players);
-};
-
-gamePlay();
+playRound(getPlayers, gameBoard);
 
 //  O  O  O
 //  0  0  0
@@ -47,3 +48,5 @@ gamePlay();
 // (0, 3, 6 - 1, 4, 7 - 2, 5, 8); columns
 // (0, 1, 2 - 3, 4, 5 - 6, 7, 8); rows
 // (0, 4, 8 - 2, 4, 6); diagonals
+
+getPlayers();

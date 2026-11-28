@@ -14,7 +14,7 @@ A two-player Tic Tac Toe game built with vanilla JavaScript, HTML, and CSS.
 - [ ] Place markers on the board
 - [ ] Check for a winner or a tie
 - [ ] Show the board on the page (DOM)
-- [ ] Restart button
+- [ ] Restart buttons
 - [ ] Styling
 
 ## How to Play (coming soon)
